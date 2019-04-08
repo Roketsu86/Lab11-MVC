@@ -28,7 +28,7 @@ namespace DontWineAboutIt.Models
         public static List<Wine> GetWineList()
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../wwwroot/wine.csv");
-            var lines = File.ReadLines(path).Skip(1).Take(100);
+            var lines = File.ReadLines(path).Skip(1).Take(10000);
             List<Wine> wineList = new List<Wine>();
             int points = 0;
             decimal price = 0m;

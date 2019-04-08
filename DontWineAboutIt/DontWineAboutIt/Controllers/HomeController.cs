@@ -43,7 +43,9 @@ namespace DontWineAboutIt.Controllers
             List<Wine> wineList = Wine.GetWineList();
             List<Wine> curatedList = new List<Wine>();
 
-            var selection = wineList.Where(w => w.Price <= price && w.Points <= points);
+            var selection = wineList
+                .Where(w => w.Price <= price && w.Points <= points)
+                .OrderByDescending(w => w.Points);
             foreach (var wine in selection)
             {
                 curatedList.Add(wine);
