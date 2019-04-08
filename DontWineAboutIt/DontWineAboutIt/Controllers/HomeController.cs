@@ -16,12 +16,25 @@ namespace DontWineAboutIt.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string name, int price, int points)
+        public IActionResult Index(decimal price, int points)
         {
-            List<Wine> wines = new List<Wine>();
-            wines = Wine.GetWineList();
-
-            return RedirectToAction("Results", wines);
+            return RedirectToAction("Results", new { price, points });
         }
+
+        [HttpGet]
+        public IActionResult Results(decimal price, int points)
+        {
+            List<Wine> wineList = Wine.GetWineList();
+            List<Wine> curatedList = new List<Wine>();
+
+            var selection = wineList.Where(w => w.Price <= price && w.Points <= points);
+            foreach (var wine in selection)
+            {
+                curatedList.Add(wine);
+            }
+
+            return View(curatedList);
+        }
+
     }
 }

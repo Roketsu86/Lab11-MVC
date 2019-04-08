@@ -15,6 +15,7 @@ namespace DontWineAboutIt.Models
         public string Designation { get; set; }
         public int Points { get; set; }
         public decimal Price { get; set; }
+        public string Province { get; set; }
         public string Region_1 { get; set; }
         public string Region_2 { get; set; }
         public string Variety { get; set; }
@@ -24,9 +25,11 @@ namespace DontWineAboutIt.Models
         public static List<Wine> GetWineList()
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../wwwroot/wine.csv");
-            var lines = File.ReadLines(path).Take(100);
-            Regex parser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+            var lines = File.ReadLines(path).Skip(1).Take(100);
             List<Wine> wineList = new List<Wine>();
+            int points = 0;
+            decimal price = 0m;
+
 
             foreach (string line in lines)
             {
@@ -38,12 +41,13 @@ namespace DontWineAboutIt.Models
                     Country = wineInfo[1],
                     Description = wineInfo[2],
                     Designation = wineInfo[3],
-                    Points = int.Parse(wineInfo[4]),
-                    Price = decimal.Parse(wineInfo[5]),
-                    Region_1 = wineInfo[6],
-                    Region_2 = wineInfo[7],
-                    Variety = wineInfo[8],
-                    Winery = wineInfo[9]
+                    Points = Int32.TryParse(wineInfo[4], out points) ? points : -1,
+                    Price = Decimal.TryParse(wineInfo[5], out price) ? price : 99999999.99m,
+                    Province = wineInfo[6],
+                    Region_1 = wineInfo[7],
+                    Region_2 = wineInfo[8],
+                    Variety = wineInfo[9],
+                    Winery = wineInfo[10]
                 };
 
                 wineList.Add(wine);
