@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DontWineAboutIt.Models.Wine>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="~/style/Reset.css" />
+    <link rel="stylesheet" href="~/style/StyleSheet.css" />
+</head>
+<body>
+    <div id="title">
+        <h1>Results:</h1>
+    </div>
+    <div id="home">
+        <h2><a asp-controller="Home" asp-action="Index">Home</a></h2>
+    </div>
+
+    <table>
+        <tr>
+            <th>Designation</th>
+            <th>Description</th>
+            <th>Variety</th>
+            <th>Points</th>
+            <th>Price</th>
+            <th>Winery</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Designation</td>
+                <td>@item.Description</td>
+                <td>@item.Variety</td>
+                <td>@item.Points</td>
+                <td>@item.Price</td>
+                <td>@item.Winery</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

@@ -1,8 +1,22 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>Don't Wine About It</title>
+    <link rel="stylesheet" href="~/style/Reset.css" />
+    <link rel="stylesheet" href="~/style/StyleSheet.css" />
 </head>
 <body>
-    Test test
+    <div id="title">
+        <h1>Search for wine by price and points.</h1>
+    </div>
+
+    <form method="post">
+        <label for="Price">Maximum Price: </label>
+        <input name="Price" type="number" />
+
+        <label for="Points">Point Rating: </label>
+        <input name="Points" type="number" />
+
+        <button type="submit">Search!</button>
+    </form>
 </body>
 </html>
