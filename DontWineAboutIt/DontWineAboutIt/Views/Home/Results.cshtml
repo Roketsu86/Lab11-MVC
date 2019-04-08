@@ -16,21 +16,21 @@
 
     <table>
         <tr>
-            <th>Designation</th>
-            <th>Description</th>
             <th>Variety</th>
+            <th>Description</th>
             <th>Points</th>
             <th>Price</th>
+            <th>Designation</th>
             <th>Winery</th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Designation</td>
-                <td>@item.Description</td>
                 <td>@item.Variety</td>
+                <td>@item.Description</td>
                 <td>@item.Points</td>
                 <td>@item.Price</td>
+                <td>@item.Designation</td>
                 <td>@item.Winery</td>
             </tr>
         }
