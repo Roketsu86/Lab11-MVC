@@ -1,15 +1,47 @@
-﻿body {
-    background-image: url("~/Assets/wine_background.jpg");
+﻿html {
+    box-sizing: border-box;
+}
 
+body {
+    background-image: url("../Assets/wine_background.jpg");
+    background-size: cover;
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 2.5rem;
     font-weight: bold;
-
 }
 
 form {
-    width: auto;
-    margin: auto;
+    /*text-align: center;*/
+    vertical-align: middle;
+    padding: 0.625rem;    
+    width: 20rem;
+    margin: 8rem auto;
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+    form label {
+        margin: 0.3125rem;
+
+    }
+
+    form input {
+        padding: 0.625rem;
+
+    }
+
+    form button {
+        padding: 0.625rem 1.25rem;
+        border: 0.0625rem solid black;
+    }
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 25rem;
+    margin: 0 auto;
 }

@@ -1,8 +1,8 @@
-﻿using CsvHelper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DontWineAboutIt.Models
@@ -20,22 +20,36 @@ namespace DontWineAboutIt.Models
         public string Variety { get; set; }
         public string Winery { get; set; }
 
+
         public static List<Wine> GetWineList()
         {
-            List<Wine> wines = new List<Wine>();
-            string path = "../../DontWineAboutIt/DontWineAboutIt/wwwroot/Assets/wine.csv";
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../wwwroot/wine.csv");
+            var lines = File.ReadLines(path).Take(100);
+            Regex parser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+            List<Wine> wineList = new List<Wine>();
 
-            using (var reader = new StreamReader(path))
-            using (var csv = new CsvReader(reader))
+            foreach (string line in lines)
             {
-                var records = csv.GetRecords<Wine>();
-                foreach (var record in records)
+                string[] wineInfo = Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+
+                Wine wine = new Wine
                 {
-                    wines.Add(record);
-                }
+                    ID = int.Parse(wineInfo[0]),
+                    Country = wineInfo[1],
+                    Description = wineInfo[2],
+                    Designation = wineInfo[3],
+                    Points = int.Parse(wineInfo[4]),
+                    Price = decimal.Parse(wineInfo[5]),
+                    Region_1 = wineInfo[6],
+                    Region_2 = wineInfo[7],
+                    Variety = wineInfo[8],
+                    Winery = wineInfo[9]
+                };
+
+                wineList.Add(wine);
             }
 
-            return wines;
+            return wineList;
         }
     }
 }
