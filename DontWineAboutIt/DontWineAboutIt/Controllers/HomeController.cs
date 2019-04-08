@@ -9,18 +9,34 @@ namespace DontWineAboutIt.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Displays Home page.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// POST action for search form on Home page.
+        /// </summary>
+        /// <param name="price">Price result from form</param>
+        /// <param name="points">Points result from form</param>
+        /// <returns>Price and Points</returns>
         [HttpPost]
         public IActionResult Index(decimal price, int points)
         {
             return RedirectToAction("Results", new { price, points });
         }
 
+        /// <summary>
+        /// Displays Results page with formated data using LINQ query based on POST.
+        /// </summary>
+        /// <param name="price">Price from POST</param>
+        /// <param name="points">Points from POST</param>
+        /// <returns>Formated wine list</returns>
         [HttpGet]
         public IActionResult Results(decimal price, int points)
         {
