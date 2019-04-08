@@ -21,7 +21,10 @@ namespace DontWineAboutIt.Models
         public string Variety { get; set; }
         public string Winery { get; set; }
 
-
+        /// <summary>
+        /// Reads in CSV file and formats contents into a usable list.
+        /// </summary>
+        /// <returns>List of all wine in CSV.</returns>
         public static List<Wine> GetWineList()
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../wwwroot/wine.csv");
